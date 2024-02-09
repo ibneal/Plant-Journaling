@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plant Dashboard</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Plant Dashboard</h1>
+    <a href="/">Home</a>
+    <div id="graphs">
+        <script>
+            var graphs = {{ graph_json | safe }};
+            for (var i = 0; i < graphs.length; i++) {
+                var graph = graphs[i];
+                Plotly.newPlot('graphs', [graph]);
+            }
+        </script>
+    </div>
+</body>
+</html>

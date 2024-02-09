@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Plant Journal</title>
+</head>
+<body>
+    <h1>Plant Journal</h1>
+    <form action="/add_measurement" method="post">
+        <label for="plant_id">Select Plant:</label>
+        <select name="plant_id" id="plant_id">
+            {% for plant in plants %}
+            <option value="{{ plant[0] }}">{{ plant[1] }}</option>
+            {% endfor %}
+        </select><br>
+        <label for="ph">pH:</label>
+        <input type="text" name="ph" id="ph"><br>
+        <label for="ec">EC:</label>
+        <input type="text" name="ec" id="ec"><br>
+        <label for="water_temp">Water Temperature:</label>
+        <input type="text" name="water_temp" id="water_temp"><br>
+        <input type="submit" value="Add Measurement">
+    </form>
+    <!-- Add this form to index.html -->
+<form action="/add_plant" method="post">
+    <label for="plant_name">Add Plant:</label>
+    <input type="text" name="plant_name" id="plant_name">
+    <input type="submit" value="Add Plant">
+</form>
+<!-- List of plants -->
+<ul>
+    {% for plant in plants %}
+        <li>
+            {{ plant[1] }}
+            <!-- Add a link to the dashboard for each plant -->
+            <a href="/dashboard/{{ plant[0] }}">View Dashboard</a>
+        </li>
+    {% endfor %}
+</ul>
+</body>
+</html>
